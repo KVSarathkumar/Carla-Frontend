@@ -6,10 +6,10 @@ import { Redirect } from 'react-router-dom';
 class Home extends Component {
 
 render(){
-
-    if(this.props.carla){return <Redirect to="/carla"/>};
    
+    if(this.props.carla){return <Redirect to="/carla"/>};
 
+  
     return (
         <div>
              <Container style={{textAlign:"center"}}>

@@ -10,7 +10,7 @@ const hist = createBrowserHistory();
 class App extends Component {
 
   state={
-    carla:false
+    carla:(localStorage.getItem("carla")==null || localStorage.getItem("carla")=="false")?false:true
 };
 
 ToggleCarla=()=>{
@@ -21,17 +21,14 @@ ToggleCarla=()=>{
     //api call to on/off the carla instance
 }
 
-componentDidMount=()=>{
-  this.setState({carla:localStorage.getItem("carla")==="true"?true:false});
-}
 
   render(){
   return (
     <Router history={hist}>
     <NavBar/>
     <Switch>
-    <Route path="/home" render={(props) => <Home {...props} toggle={this.ToggleCarla} carla={this.state.carla}/>} />
-    <Route path="/carla" render={(props) => <Carla {...props} toggle={this.ToggleCarla} carla={this.state.carla}/>}/>
+    <Route  path="/home" render={(props) => <Home {...props} toggle={this.ToggleCarla} carla={this.state.carla}/>} />
+    <Route  path="/carla" render={(props) => <Carla {...props} toggle={this.ToggleCarla} carla={this.state.carla}/>}/>
     <Redirect to="/home"/>
     </Switch>
   </Router>

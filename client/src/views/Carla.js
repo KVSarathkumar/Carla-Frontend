@@ -9,8 +9,10 @@ class Carla extends Component {
 
 render(){
 
+
     if(!this.props.carla){return <Redirect to="/home"/>};
-    
+
+
     return (
         <div>
             <ThemeProvider theme={UI_THEME}>
