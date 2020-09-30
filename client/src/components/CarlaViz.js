@@ -104,12 +104,15 @@ class CarlaViz extends PureComponent {
       customLayers = [map];
     }
 
+    console.log(this.props.toggle);
+
+
     return (
       <div id="container">
         <div id="control-panel">
           <div id="github">
               <div style={{textAlign:"center",paddingBottom:"50px"}}>
-              <Button onClick={()=>this.props.toggle()} color="primary" >Stop Carla</Button>
+              <Button onClick={()=>{this.props.history.push("/home");this.props.toggle();}} color="primary" >Stop Carla</Button>
               </div>
            
           </div>
