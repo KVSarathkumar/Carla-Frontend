@@ -1,13 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import { createBrowserHistory } from "history";
+import NavBar from './components/NavBar';
+import { Router, Route, Switch, Redirect } from "react-router-dom";
+import Home from './views/Home';
+import Carla from './views/Carla';
+const hist = createBrowserHistory();
 
-function App() {
-  return (
-    <div className="App">
+class App extends Component {
+
+  state={
+    carla:(localStorage.getItem("carla")==null || localStorage.getItem("carla")=="false")?false:true
+};
+
+ToggleCarla=()=>{
+
+   localStorage.setItem("carla",!this.state.carla);
+    this.setState({carla:!this.state.carla});
     
-    </div>
+    //api call to on/off the carla instance
+}
+
+
+  render(){
+  return (
+    <Router history={hist}>
+    <NavBar/>
+    <Switch>
+    <Route  path="/home" render={(props) => <Home {...props} toggle={this.ToggleCarla} carla={this.state.carla}/>} />
+    <Route  path="/carla" render={(props) => <Carla {...props} toggle={this.ToggleCarla} carla={this.state.carla}/>}/>
+    <Redirect to="/home"/>
+    </Switch>
+  </Router>
   );
+  }
 }
 
 export default App;
